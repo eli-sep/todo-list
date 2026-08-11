@@ -1,23 +1,23 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 
 function TodoForm({ onAddTodo }) {
+  const [workingTodoTitle, setWorkingTodoTitle] = useState('');
   const inputRef = useRef();
 
   function handleAddTodo(event) {
     event.preventDefault();
 
-    const todoTitle = event.target.todoTitle.value.trim();
-    if (todoTitle) {
-    onAddTodo(todoTitle);
-    event.target.reset();
+    onAddTodo(workingTodoTitle);
     inputRef.current.focus();
+    setWorkingTodoTitle('');
   }
-}
   return (
     <form onSubmit={handleAddTodo}>
       <label htmlFor="todoTitle">Todo</label>
-      <input ref={inputRef} type="text" id="todoTitle" name="todoTitle" placeholder={'Todo text'} required />
-      <button type="submit">Add Todo</button>
+      <input ref={inputRef} type="text" id="todoTitle" name="todoTitle" placeholder={'Todo text'} required value={workingTodoTitle} onChange={(event) => setWorkingTodoTitle(event.target.value)} />
+      <button type="submit" disabled={!workingTodoTitle.trim()}>
+        Add Todo
+      </button>
     </form>
   );
 }
