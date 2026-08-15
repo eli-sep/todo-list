@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import TextInputWithLabel from '../shared/TextInputWithLabel';
+import { isValidTodoTitle } from '../utils/todoValidation';
 
 function TodoForm({ onAddTodo }) {
   const [workingTodoTitle, setWorkingTodoTitle] = useState('');
@@ -23,7 +24,7 @@ function TodoForm({ onAddTodo }) {
         value={workingTodoTitle} 
       />
 
-      <button type="submit" disabled={!workingTodoTitle.trim()}>
+      <button type="submit" disabled={!isValidTodoTitle(workingTodoTitle)}>
         Add Todo
       </button>
     </form>
