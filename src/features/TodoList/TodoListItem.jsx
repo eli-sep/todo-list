@@ -30,6 +30,7 @@ function TodoListItem({ todo, onCompleteTodo , onUpdateTodo }) {
         {isEditing ? (
           <>
             <TextInputWithLabel 
+              elementId='listItem'
               value={workingTitle}
               onChange={handleEdit} 
             />
@@ -41,8 +42,9 @@ function TodoListItem({ todo, onCompleteTodo , onUpdateTodo }) {
             </button >
           </>) : (
           <>
-            <label>
-              <input 
+            <label htmlFor='listItem'>
+              <input
+                id='listItem'
                 type="checkbox" 
                 checked={todo.isCompleted} 
                 onChange={() => onCompleteTodo(todo.id)} 
