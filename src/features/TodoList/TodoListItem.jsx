@@ -33,13 +33,13 @@ function TodoListItem({ todo, onCompleteTodo , onUpdateTodo }) {
           <>
             <TextInputWithLabel 
               elementId={elementId}
+              labelText={''}
               value={workingTitle}
               onChange={handleEdit} 
             />
             <button type='button' onClick={cancelEdit}>Cancel</button>
             <button 
-              type='button' 
-              onClick={(event) => handleUpdate(event)}
+              type='submit' 
               disabled={!isValidTodoTitle(workingTitle)}
             >Update
             </button >
