@@ -13,8 +13,6 @@ function TodoListItem({ todo, onCompleteTodo , onUpdateTodo }) {
     finishEdit,
   } = useEditableTitle(todo.title);
 
-  const elementId = `todo-${todo.id}`
-
   function handleEdit(event){
     updateTitle(event.target.value)
   }
@@ -32,8 +30,6 @@ function TodoListItem({ todo, onCompleteTodo , onUpdateTodo }) {
         {isEditing ? (
           <>
             <TextInputWithLabel 
-              elementId={elementId}
-              labelText={''}
               value={workingTitle}
               onChange={handleEdit} 
             />
@@ -45,9 +41,8 @@ function TodoListItem({ todo, onCompleteTodo , onUpdateTodo }) {
             </button >
           </>) : (
           <>
-            <label htmlFor={elementId}>
-              <input
-                id={elementId}
+            <label>
+              <input 
                 type="checkbox" 
                 checked={todo.isCompleted} 
                 onChange={() => onCompleteTodo(todo.id)} 
